@@ -32,3 +32,15 @@ so the updating is instantaneous.
 No. A Micro-Frotend is just a self-contained component that manages its own state and connection to its Micro-services. You can
 implement Micro-Frotends using npm modules hosted in different repositories, or in a single repository as a mono-repo, or using Module
 Federation. Which mechanism you choose depends on your requirements.
+
+# How do I share CSS using Module Federation?
+
+You can only share JavaScript code with Module Federation. You can't share CSS as CSS, or images as images. One approach to styling Micro-Frontends
+is to use a shared stylesheet between the host applications, and to use a CSS-in-JS solution, like emotion, to refine the styles of the
+components.
+
+# How does TypeScript work with Module Federation?
+
+Module Federation shares JavaScript files at runtime. When the TypeScript files are compiled and deployed the types are gone.
+One recommendation for using type with Module Federation is to use shared "contract" libraries that define the types of exposed modules.
+And these contract libraries should be used by both host and remote to ensure that shared code conforms to those contracts.
