@@ -33,6 +33,18 @@ No. A Micro-Frotend is just a self-contained component that manages its own stat
 implement Micro-Frotends using npm modules hosted in different repositories, or in a single repository as a mono-repo, or using Module
 Federation. Which mechanism you choose depends on your requirements.
 
+# Can I use a mono-repo in conjunction with Module Federation?
+
+Absolutely. You can share the same component both dynamically using Module Federation and as build-time dependency as a fallback using a 
+mono-repo.
+
+# How does Module Federation relate to SingleSPA?
+
+SingleSPA is a system that makes it easy to host components written in different frontend frameworks on the same page. For example a React application
+can host an Angular component packaged as a SingleSPA parcel. SingleSPA can use Module Federation to load the component parcels. So these two
+technologies can be used together. Module Federation does **not** have any mechanism that allows you to run code from one view framework within a
+different view framework. Though it will happily allow you to import that code.
+
 # How do I share CSS using Module Federation?
 
 You can only share JavaScript code with Module Federation. You can't share CSS as CSS, or images as images. One approach to styling Micro-Frontends
