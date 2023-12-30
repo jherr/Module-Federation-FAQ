@@ -56,3 +56,14 @@ components.
 Module Federation shares JavaScript files at runtime. When the TypeScript files are compiled and deployed the types are gone.
 One recommendation for using type with Module Federation is to use shared "contract" libraries that define the types of exposed modules.
 And these contract libraries should be used by both host and remote to ensure that shared code conforms to those contracts.
+
+# Why Doesn't Tailwind Work?
+
+Tailwind has a pre-processor that looks through all the code involved in the build and figures out what to include in the CSS.
+Because your run-time modules are not parsed by the pre-processor it doesn't see those classes and thus the classes don't
+exist in the application's CSS. You can add classes to the `safelist` and that would include them in the application build
+even if the pre-processor didn't find them at build time. But this means any time you add classes to your run-time loaded MFEs
+you would have to adjust the `safelist` in all consuming applications if those applications didn't already use that class.
+
+Tailwind after release 3 is not a good choice for doing MFEs because of this build-time pruning. Any CSS-in-JS technology
+is currently the best option for module federation.
